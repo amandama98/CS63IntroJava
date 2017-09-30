@@ -1,0 +1,116 @@
+package for_ex_6_4;
+
+// Amanda Ma 
+// 9/28/2017 
+
+/* Program for a GUI that determines the sum of a positive and a negative integer, each specified by the number of clicks
+ * acted upon a button. */ 
+
+
+import java.awt.*; 
+import java.awt.event.*; 
+import javax.swing.*; 
+
+public class AddingIntegers extends JFrame { 
+
+	private JTextArea instructTA; 
+	private JButton minusB, plusB; 
+	private JTextField minus1TF, plus1TF, sumTF; 
+	private JLabel plus1L, equalL; 
+	private Container myCP; 
+	int neg = 0, pos = 0, sum = 0; 
+	
+	public AddingIntegers () { 
+
+		super("Adding Integers"); 
+ 
+		setSize(400, 280); 
+		setLocation(500,500); 
+
+		myCP = getContentPane();  
+		myCP.setLayout(new FlowLayout()); 
+		myCP.setBackground(Color.pink); 
+ 		myCP.setForeground(Color.black); 
+
+		instructTA = new JTextArea("Click the buttons to see what happens!");
+		instructTA.setEditable(false); 
+		myCP.add(instructTA); 
+		
+		plusB = new JButton("+");
+		plusB.addActionListener(new PlusBHandler());
+		myCP.add(plusB); 
+		
+		minusB = new JButton("-");
+		minusB.addActionListener(new MinusBHandler());
+		myCP.add(minusB); 
+		
+		plus1TF = new JTextField("0"); 
+		plus1TF.setEditable(false);
+		myCP.add(plus1TF); 
+		
+		plus1L = new JLabel("+"); 
+		myCP.add(plus1L); 
+		
+		minus1TF = new JTextField("0");
+		minus1TF.setEditable(false);
+		myCP.add(minus1TF); 
+		
+		equalL = new JLabel("="); 
+		myCP.add(equalL); 
+ 		
+		sumTF = new JTextField("0");
+		sumTF.setEditable(false);
+		myCP.add(sumTF); 
+
+		setVisible(true); 
+		addWindowListener(new WindowAdapter() {
+		    public void windowClosing(WindowEvent e) {
+			System.exit(0);
+		    }//windowClosing
+		});
+		
+		instructTA.setLocation(80,20);
+    
+		plusB.setLocation(130,50);
+		plusB.setSize(50,50);
+    
+		minusB.setLocation(230,50);
+		minusB.setSize(50,50);
+    
+		plus1TF.setLocation(140,110);
+		plus1TF.setSize(40,40);
+		plus1L.setLocation(200,120);
+    
+		minus1TF.setLocation(230, 110);
+		minus1TF.setSize(40,40);
+    
+		equalL.setLocation(150,170);
+    
+		sumTF.setLocation(185,155);
+		sumTF.setSize(40,40);
+		
+	} //AddingIntegers
+	
+
+	public class PlusBHandler implements ActionListener { 
+ 		public void actionPerformed (ActionEvent e) { 
+			pos += 1; 
+			plus1TF.setText("" + pos + "");
+			sum += 1; 
+			sumTF.setText("" + sum + "");
+		} 
+	} //PlusBHandler
+	
+	public class MinusBHandler implements ActionListener { 
+ 		public void actionPerformed (ActionEvent e) { 
+			neg -= 1; 
+			minus1TF.setText("" + neg + "");
+			sum -= 1; 
+			sumTF.setText("" + sum + "");
+		} 
+	} //PlusBHandler
+
+	public static void main (String args[]) { 
+		AddingIntegers myAppF = new AddingIntegers(); 
+	} //main 
+} // AddingIntegers
